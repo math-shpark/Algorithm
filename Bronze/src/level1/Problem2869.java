@@ -4,46 +4,46 @@ import java.util.Scanner;
 
 public class Problem2869 {
 
-	// 2869. ´ÞÆØÀÌ´Â ¿Ã¶ó°¡°í ½Í´Ù
+	// 2869. ë‹¬íŒ½ì´ëŠ” ì˜¬ë¼ê°€ê³  ì‹¶ë‹¤
 	public static void main(String[] args) {
 
-		// Scanner »ý¼º
+		// Scanner ìƒì„±
 		Scanner scan = new Scanner(System.in);
 		
-		// ¿Ã¶ó°¡´Â ³ôÀÌ
+		// ì˜¬ë¼ê°€ëŠ” ë†’ì´
 		int up = scan.nextInt();
-		// ¹Ì²ô·¯Áö´Â ³ôÀÌ
+		// ë¯¸ë„ëŸ¬ì§€ëŠ” ë†’ì´
 		int down = scan.nextInt();
-		// ³ª¹« ¸·´ë±â ±æÀÌ
+		// ë‚˜ë¬´ ë§‰ëŒ€ê¸° ê¸¸ì´
 		int height = scan.nextInt();
 		
-		// ¿Ã¶ó°£ ³ôÀÌ
+		// ì˜¬ë¼ê°„ ë†’ì´
 		int sum = 0;
-		// ¿Ã¶ó°£ ±â°£
+		// ì˜¬ë¼ê°„ ê¸°ê°„
 		int day = 1;
 		
-		// Á¤»ó¿¡ ¿Ã¶ó°¥ ¶§±îÁö ¹Ýº¹ÇÏ´Â ¹Ýº¹¹®
+		// ì •ìƒì— ì˜¬ë¼ê°ˆ ë•Œê¹Œì§€ ë°˜ë³µí•˜ëŠ” ë°˜ë³µë¬¸
 		while(true) {
 			
-			// ³·¿¡ ¿Ã¶ó°£ ³ôÀÌ ´õÇÏ±â
+			// ë‚®ì— ì˜¬ë¼ê°„ ë†’ì´ ë”í•˜ê¸°
 			sum += up;
 			
-			// Á¤»ó¿¡ µµ´ÞÇÏÁö ¸øÇÑ °æ¿ì
-			// ¹ã¿¡ ¹Ì²ô·¯Áö´Â ¸¸Å­ Â÷°¨
-			// ÀÏ¼ö Ãß°¡
+			// ì •ìƒì— ë„ë‹¬í•˜ì§€ ëª»í•œ ê²½ìš°
+			// ë°¤ì— ë¯¸ë„ëŸ¬ì§€ëŠ” ë§Œí¼ ì°¨ê°
+			// ì¼ìˆ˜ ì¶”ê°€
 			if(height > sum) {
 				sum -= down;
 				day++;
 			} else {
-				break; // ³·¿¡ ¿Ã¶ó°£ ³ôÀÌ°¡ ¸·´ë±â Á¤»ó¿¡ ´êÀ¸¸é Â÷°¨¾øÀÌ ¹Ýº¹¹® Á¾·á
+				break; // ë‚®ì— ì˜¬ë¼ê°„ ë†’ì´ê°€ ë§‰ëŒ€ê¸° ì •ìƒì— ë‹¿ìœ¼ë©´ ì°¨ê°ì—†ì´ ë°˜ë³µë¬¸ ì¢…ë£Œ
 			}
 			
 		}
 		
-		// °á°ú Ãâ·Â
+		// ê²°ê³¼ ì¶œë ¥
 		System.out.println(day);
 		
-		// ³¡³»±â
+		// ëë‚´ê¸°
 		scan.close();
 		
 	}

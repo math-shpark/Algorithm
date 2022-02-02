@@ -1,4 +1,4 @@
-package sec03;
+package level3;
 
 import java.util.Scanner;
 
