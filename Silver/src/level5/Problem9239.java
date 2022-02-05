@@ -1,23 +1,27 @@
 package level5;
 
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Problem9239 {
 
 	// 9239. 스티브 잡숭
-	public static void main(String[] args) {
+	public static void main(String[] args) throws NumberFormatException, IOException {
 
-		Scanner scan = new Scanner(System.in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-		double multi = scan.nextDouble();
+		double multi = Double.parseDouble(br.readLine());
 
 		boolean isNoSolution = true;
 
 		for (int i = 0; i < 8; i++) {
 
-			for (int j = (int) Math.pow(10, i); j < Math.pow(10, i + 1); j++) {
-				int num1 = j / (int) Math.pow(10, i);
-				int num2 = j - num1 * (int) Math.pow(10, i);
+			int range = (int) Math.pow(10, i);
+
+			for (int j = range; j < range * 10; j++) {
+				int num1 = j / range;
+				int num2 = j - num1 * range;
 
 				int newNum = num2 * 10 + num1;
 
@@ -31,8 +35,6 @@ public class Problem9239 {
 		if (isNoSolution) {
 			System.out.println("No solution");
 		}
-
-		scan.close();
 
 	}
 
