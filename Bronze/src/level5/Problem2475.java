@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class Problem2475 {
 
+	// 2475. 검증수
 	public static void main(String[] args) {
 
 		Scanner scan = new Scanner(System.in);

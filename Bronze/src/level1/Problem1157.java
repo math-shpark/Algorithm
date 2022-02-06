@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 public class Problem1157 {
 
+	// 1157. 단어 공부
 	public static void main(String[] args) throws IOException {
 
 		Scanner scan = new Scanner(System.in);
