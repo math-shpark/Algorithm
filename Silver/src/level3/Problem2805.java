@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class Problem2805 {
 
+	// 2805. 나무 자르기
 	public static void main(String[] args) {
 
 		Scanner scan = new Scanner(System.in);
