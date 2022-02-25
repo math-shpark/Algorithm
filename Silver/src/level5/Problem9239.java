@@ -8,32 +8,32 @@ public class Problem9239 {
 	public static void main(String[] args) {
 
 		Scanner scan = new Scanner(System.in);
+		StringBuilder sb = new StringBuilder();
 
 		double x = scan.nextDouble();
 		boolean isNoSolution = true;
-		int range = 0;
+		double pow = 1;
 
-		for (int i = 0; i < 8; i++) {
-
-			range = (int) Math.pow(10, i);
-
-			for (int j = range; j < range * 10; j++) {
-
-				if (j * x != (int) j * x) {
-					continue;
+		if (x < 10) {
+			for (int i = 0; i < 8; i++) {
+				for (double j = pow * 1; j < pow * 10; j++) {
+					int a0 = (int) (j / pow);
+					if (j == ((pow * 10 - 1) / (10 - x)) * a0) {
+						sb.append((int) j).append('\n');
+						isNoSolution = false;
+					}
 				}
-
-				int newNum = j % range * 10 + j / range;
-				if (j * x == newNum) {
-					System.out.println(j);
-					isNoSolution = false;
-				}
+				pow = pow * 10;
 			}
 		}
 
 		if (isNoSolution) {
 			System.out.println("No solution");
+		} else {
+			System.out.println(sb);
 		}
+
+		scan.close();
 
 	}
 
