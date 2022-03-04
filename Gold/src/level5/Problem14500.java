@@ -1,85 +1,90 @@
 package level5;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.StringTokenizer;
 
 public class Problem14500 {
+	static int N;
+	static int M;
+	static int[][] arr;
+	static boolean[][] visited;
+	static BufferedReader br;
+	static int[] dx = { -1, 0, 1, 0 };
+	static int[] dy = { 0, -1, 0, 1 };
+	static int max;
 
-	// 14500. 테트로미노
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws Exception {
 
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st = new StringTokenizer(br.readLine());
-
-		int N = Integer.parseInt(st.nextToken());
-		int M = Integer.parseInt(st.nextToken());
-		int[][] space = new int[N][M];
-		int maxSum = 0;
-
+		br = new BufferedReader(new InputStreamReader(System.in));
+		String[] str = br.readLine().split(" ");
+		N = Integer.parseInt(str[0]);
+		M = Integer.parseInt(str[1]);
+		arr = new int[N][M];
+		visited = new boolean[N][M];
+		max = 0;
 		for (int i = 0; i < N; i++) {
-			st = new StringTokenizer(br.readLine());
+			str = br.readLine().split(" ");
 			for (int j = 0; j < M; j++) {
-				space[i][j] = Integer.parseInt(st.nextToken());
+				arr[i][j] = Integer.parseInt(str[j]);
 			}
 		}
-
-		int[][] dr = new int[5][3];
-		int[][] dc = new int[5][3];
-
-		int[] dr1 = { 0, 0, 0 };
-		int[] dc1 = { 1, 1, 1 };
-
-		int[] dr2 = { 0, 1, 0 };
-		int[] dc2 = { 1, 0, -1 };
-
-		int[] dr3 = { 1, 1, 0 };
-		int[] dc3 = { 0, 0, 1 };
-
-		int[] dr4 = { 1, 0, 1 };
-		int[] dc4 = { 0, 1, 0 };
-
-		int[] dr5 = { 0, 1, -1 };
-		int[] dc5 = { 1, 0, 1 };
-
-		dr[0] = dr1;
-		dr[1] = dr2;
-		dr[2] = dr3;
-		dr[3] = dr4;
-		dr[4] = dr5;
-
-		dc[0] = dc1;
-		dc[1] = dc2;
-		dc[2] = dc3;
-		dc[3] = dc4;
-		dc[4] = dc5;
-
 		for (int i = 0; i < N; i++) {
 			for (int j = 0; j < M; j++) {
-				for (int k = 0; k < 5; k++) {
-					int tempSum = space[i][j];
-					int newX = i;
-					int newY = j;
-					for (int l = 0; l < 3; l++) {
-						newX = newX + dr[k][l];
-						newY = newY + dc[k][l];
 
-						if (newX < 0 || newX >= N || newY < 0 || newY >= M) {
-							break;
-						}
+				DFS(i, j, 0, 0);
+				Exception(i, j);
 
-						tempSum += space[newX][newY];
-					}
-					if (maxSum < tempSum) {
-						maxSum = tempSum;
-					}
-				}
 			}
 		}
+		System.out.println(max);
+	}
 
-		System.out.println(maxSum);
+	public static void DFS(int x, int y, int depth, int sum) {
 
+		if (depth == 4) {
+			max = Math.max(max, sum);
+			return;
+		}
+
+		for (int i = 0; i < 4; i++) {
+			int nextX = x + dx[i];
+			int nextY = y + dy[i];
+
+			if (nextX < 0 || nextY < 0 || nextX >= N || nextY >= M) {
+				continue;
+			}
+			if (visited[nextX][nextY]) {
+				continue;
+			}
+			visited[nextX][nextY] = true;
+			DFS(nextX, nextY, depth + 1, sum + arr[nextX][nextY]);
+			visited[nextX][nextY] = false;
+
+		}
+
+	}
+
+	public static void Exception(int x, int y) {
+		int wing = 4; 
+		int min = Integer.MAX_VALUE;
+		int sum = arr[x][y];
+		for (int i = 0; i < 4; i++) {
+			int nextX = x + dx[i];
+			int nextY = y + dy[i];
+
+			if (wing <= 2)
+				return;
+			if (nextX < 0 || nextY < 0 || nextX >= N || nextY >= M) {
+				wing--;
+				continue;
+			}
+			min = Math.min(min, arr[nextX][nextY]);
+			sum = sum + arr[nextX][nextY];
+		}
+		if (wing == 4) {
+			sum = sum - min;
+		}
+		max = Math.max(max, sum);
 	}
 
 }
