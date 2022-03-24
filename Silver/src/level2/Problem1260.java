@@ -83,7 +83,7 @@ public class Problem1260 {
 		// 현재 노드를 기준으로 연결된 노드 탐색
 		// 탐색 가능한 노드가 여러 개이면 작은 번호의 노드로 이동하는 것이 조건이므로
 		// 반복문 시작을 0부터 마지막 노드 순으로 탐색 및 재귀
-		for (int node = 0; node < space.length; node++) {
+		for (int node = 1; node < space.length; node++) {
 			if (space[startNode][node] == 1 && isVisited[node] == false) {
 				dfs(node);
 			}
