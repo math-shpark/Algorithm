@@ -24,7 +24,6 @@ public class Problem2930 {
 			// 입력받은 수를 규칙에 맞춰 작업 수행
 			for (int i = 0; i < N; i++) {
 				int num = scan.nextInt();
-				
 
 				switch (num) {
 				case 2:
