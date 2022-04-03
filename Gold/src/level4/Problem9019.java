@@ -10,45 +10,53 @@ public class Problem9019 {
 	// 9019. DSLR
 	public static void main(String[] args) throws NumberFormatException, IOException {
 
-		Scanner sc = new Scanner(System.in);
-		int T = sc.nextInt();
+		Scanner scan = new Scanner(System.in);
+		// 테스트 케이스 개수 입력
+		int T = scan.nextInt();
 
+		// 입력한 개수만큼 반복
 		for (int tc = 1; tc <= T; tc++) {
-			int A = sc.nextInt(), B = sc.nextInt();
+			// 시작 숫자와 도착 숫자 입력
+			int start = scan.nextInt();
+			int end = scan.nextInt();
+			// 이미 다른 경로를 통해 도착했는지 여부를 저장할 배열
 			boolean[] visit = new boolean[10000];
-			visit[A] = true;
+			// 출발 숫자 표시
+			visit[start] = true;
 
-			Queue<Register> que = new LinkedList<>();
-			que.add(new Register(A, ""));
+			// bfs 큐
+			Queue<Register> bfsQue = new LinkedList<>();
+			bfsQue.add(new Register(start, ""));
 
-			String ans = "";
-			while (!que.isEmpty()) {
-				Register cur = que.poll();
+			while (!bfsQue.isEmpty()) {
+				Register cur = bfsQue.poll();
 
-				if (cur.num == B) {
+				if (cur.num == end) {
 					System.out.println(cur.command);
 					break;
 				}
 
 				if (!visit[cur.D()]) {
-					que.add(new Register(cur.D(), cur.command + "D"));
+					bfsQue.add(new Register(cur.D(), cur.command + "D"));
 					visit[cur.D()] = true;
 				}
 				if (!visit[cur.S()]) {
-					que.add(new Register(cur.S(), cur.command + "S"));
+					bfsQue.add(new Register(cur.S(), cur.command + "S"));
 					visit[cur.S()] = true;
 				}
 				if (!visit[cur.L()]) {
-					que.add(new Register(cur.L(), cur.command + "L"));
+					bfsQue.add(new Register(cur.L(), cur.command + "L"));
 					visit[cur.L()] = true;
 				}
 				if (!visit[cur.R()]) {
-					que.add(new Register(cur.R(), cur.command + "R"));
+					bfsQue.add(new Register(cur.R(), cur.command + "R"));
 					visit[cur.R()] = true;
 				}
 
 			}
 		}
+
+		scan.close();
 
 	}
 
