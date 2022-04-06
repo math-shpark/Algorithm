@@ -30,7 +30,7 @@ public class Problem1231 {
 			// 노드 내 글자를 배열에 저장하는 반복문
 			for (int i = 1; i <= N; i++) {
 				StringTokenizer st = new StringTokenizer(br.readLine());
-				int nodeNum = Integer.parseInt(st.nextToken());
+				st.nextToken();
 
 				treeLetter[i] = st.nextToken();
 			}

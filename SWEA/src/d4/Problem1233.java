@@ -22,7 +22,7 @@ public class Problem1233 {
 			for (int i = 1; i <= N; i++) {
 				StringTokenizer st = new StringTokenizer(br.readLine());
 				// 노드 번호 입력(사용 X)
-				int nodeNum = Integer.parseInt(st.nextToken());
+				st.nextToken();
 				// 노드 번호 다음 데이터 입력
 				char data = st.nextToken().charAt(0);
 
