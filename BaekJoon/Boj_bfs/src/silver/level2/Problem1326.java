@@ -1,4 +1,4 @@
-package level2;
+package silver.level2;
 
 import java.util.LinkedList;
 import java.util.Queue;
