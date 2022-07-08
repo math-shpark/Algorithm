@@ -7,61 +7,56 @@ import java.util.StringTokenizer;
 
 public class Problem10830 {
 
-	final static int MOD = 1000;
-	public static int N;
+	public static int n;
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		StringBuilder sb = new StringBuilder();
 
-		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+		n = Integer.parseInt(st.nextToken()); // N
 
-		N = Integer.parseInt(st.nextToken());
+		int[][] origin = new int[n][n];
+		int[][] result = new int[n][n];
 
-		int[][] origin = new int[N][N];
-		int[][] result = new int[N][N];
+		long b = Long.parseLong(st.nextToken()); // B
 
-		long B = Long.parseLong(st.nextToken());
-
-		for (int i = 0; i < N; i++) {
-			st = new StringTokenizer(br.readLine(), " ");
-			for (int j = 0; j < N; j++) {
+		for (int i = 0; i < n; i++) {
+			st = new StringTokenizer(br.readLine());
+			for (int j = 0; j < n; j++) {
 				origin[i][j] = Integer.parseInt(st.nextToken());
 			}
-			result[i][i] = 1;
+			result[i][i] = 1; // I_n
 		}
 
-		while (B > 0) {
-
-			if (B % 2 == 1) {
+		while (b > 0) {
+			if (b % 2 == 1) {
 				result = multiply(result, origin);
 			}
 			origin = multiply(origin, origin);
 
-			B /= 2;
+			b /= 2;
 		}
 
-		StringBuilder sb = new StringBuilder();
-
-		for (int i = 0; i < N; i++) {
-			for (int j = 0; j < N; j++) {
-				sb.append(result[i][j]).append(' ');
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				sb.append(result[i][j]).append(" ");
 			}
 			sb.append('\n');
 		}
 
-		System.out.println(sb);
+		System.out.println(sb); // print
 	}
 
-	public static int[][] multiply(int[][] o1, int[][] o2) {
+	public static int[][] multiply(int[][] m1, int[][] m2) {
 
-		int[][] result = new int[N][N];
+		int[][] result = new int[n][n];
 
-		for (int i = 0; i < N; i++) {
-			for (int j = 0; j < N; j++) {
-				for (int k = 0; k < N; k++) {
-
-					result[i][j] += o1[i][k] * o2[k][j];
-					result[i][j] %= MOD;
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				for (int k = 0; k < n; k++) {
+					result[i][j] += m1[i][k] * m2[k][j];
+					result[i][j] %= 1000;
 				}
 			}
 		}
