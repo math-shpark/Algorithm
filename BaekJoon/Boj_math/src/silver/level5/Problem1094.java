@@ -1,4 +1,4 @@
-package silver.level5
+package silver.level5;
 
 import java.util.Scanner;
 
